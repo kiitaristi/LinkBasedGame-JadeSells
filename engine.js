@@ -21,6 +21,9 @@ class Engine {
                 this.gotoScene(firstSceneClass)
             }
         );
+
+        this.puzzleSolved = false;
+        this.penHave = false;
     }
 
     gotoScene(sceneClass, data) {

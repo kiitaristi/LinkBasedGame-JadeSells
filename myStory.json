@@ -1,58 +1,154 @@
 {
-    "Title": "Campus Life on the West Side",
-    "Credits": "Created by Adam Smith (amsmith@ucsc.edu).",
-    "InitialLocation": "Kresge",
+    "Title": "ADJUST",
+    "Credits": "Created by Jade Sells",
+    "InitialLocation": "Start",
     "Locations": {
-        "Kresge": {
-            "Body": "This is Kresge College, lots of nice trees.",
+        "Start": {
+            "Body": "You awake in a room, your eyes adjusting to the dim lighting.",
             "Choices": [
                 {
-                    "Text": "South",
-                    "Target": "Porter"
+                    "Text": "Focus.",
+                    "Target": "Start Room"
                 }
             ]
         },
-        "Porter": {
-            "Body": "This is Porter College, the trees are nice here too.",
+        "Start Room": {
+            "Body": "The room before you has two doors, one with a handle on the far side, and one with a slowly-blinking red light next to it on the right hand wall.",
             "Choices": [
                 {
-                    "Text": "North",
-                    "Target": "Kresge"
+                    "Text": "Approach the light.",
+                    "Target": "Exit (Closed)"
                 },
                 {
-                    "Text": "South",
-                    "Target": "Rachel Carson"
-                }
-            ]
-        },
-        "Rachel Carson": {
-            "Body": "Rachel Carson College, more sun and fewer trees.",
-            "Choices": [
-                {
-                    "Text": "North",
-                    "Target": "Porter"
+                    "Text": "Approach the heavy door now humming.",
+                    "Target": "Exit (Open)"
                 },
                 {
-                    "Text": "South",
-                    "Target": "Oakes"
+                    "Text": "Reach for the handle.",
+                    "Target": "Room 1"
                 }
             ]
         },
-        "Oakes": {
-            "Body": "Oakes College, even the buildings have tree bark on them.",
+        "Exit (Closed)": {
+            "Body": "The door is cold to the touch, the red blinking light providing no answers as to how to open it.",
             "Choices": [
                 {
-                    "Text": "North",
-                    "Target": "Rachel Carson"
-                },
-                {
-                    "Text": "South",
-                    "Target": "Beyond"
+                    "Text": "Back to the rest of the room.",
+                    "Target": "Start Room"
                 }
             ]
         },
-        "Beyond": {
-            "Body": "Grass, don't forget to check for ticks!"
+        "Exit (Open)": {
+            "Body": "As you approach the door, power lowly humming through its frame, it slides open.",
+            "Choices": [
+                {
+                    "Text": "Leave.",
+                    "Target": "The End"
+                }
+            ]
+        },
+        "Room 1": {
+            "Body": "The door leads to a new room, with a door on the far wall and one to the left of you, with electric\n\nhazard warnings providing a sense of foreboding.",
+            "Choices": [
+                {
+                    "Text": "The door on the far wall.",
+                    "Target": "Room 2"
+                },
+                {
+                    "Text": "The door with electrical warnings.",
+                    "Target": "Puzzle Room (Unsolved)"
+                },
+                {
+                    "Text": "Go back.",
+                    "Target": "Start Room"
+                }
+            ]
+        },
+        "Puzzle Room (Unsolved)": {
+            "Body": "A room with plugs lining the wall to your right and cables dangling from the wall to your left.",
+            "Choices": [
+                {
+                    "Text": "Plug them in.",
+                    "Target": "Puzzle Room (Solved)"
+                },
+                {
+                    "Text": "Leave.",
+                    "Target": "Room 1"
+                }
+            ]
+        },
+        "Puzzle Room (Solved)": {
+            "Body": "A room with electrical connections now made.",
+            "Choices": [
+                {
+                    "Text": "Leave.",
+                    "Target": "Room 1"
+                }
+            ]
+        },
+        "Room 2": {
+            "Body": "The door leads to a new room, with a collapsed wall in front of you and one door to the right of you, with a sign\n\nthat states \"Written Records\".",
+            "Choices": [
+                {
+                    "Text": "The written records.",
+                    "Target": "Written Records"
+                },
+                {
+                    "Text": "Go back.",
+                    "Target": "Room 1"
+                }
+            ]
+        },
+        "Written Records": {
+            "Body": "File cabinets line a cramped room, with some having papers overflowing out of the seams.",
+            "Choices": [
+                {
+                    "Text": "How about the cabinets on the left?",
+                    "Target": "Left File Cabinets"
+                },
+                {
+                    "Text": "Or maybe the ones on the right?",
+                    "Target": "Right File Cabinets"
+                },
+                {
+                    "Text": "The ones in the middle perhaps?",
+                    "Target": "Middle File Cabinets"
+                },
+                {
+                    "Text": "Go back.",
+                    "Target": "Room 2"
+                }
+            ]
+        },
+        "Left File Cabinets": {
+            "Body": "You take a slip of paper peeking out of a locked file cabinet. From the legible words, it reads,\n\n\t\t\"...facilities across the globe are going dark, and no one on local channels are responding to our messages...\"",
+            "Choices": [
+                {
+                    "Text": "Back to the other files.",
+                    "Target": "Written Records"
+                }
+            ]
+        },
+        "Right File Cabinets": {
+            "Body": "Sticky notes strewn across the cabinets have plans of needing to preserve electronic information in physical formats,\n\nutilizing retro hardware that can utilize those physical formats, and other plans. Not like they matter for this long dead facility.",
+            "Choices": [
+                {
+                    "Text": "What about the other files?",
+                    "Target": "Written Records"
+                }
+            ]
+        },
+        "Middle File Cabinets": {
+            "Body": "The cabinets in front of you are uncharacteristically orderly when compared to the others. You attempt to open them, but they refuse to budge, the locks somehow not buckling under their rust. However, you do find and pocket a pen.",
+            "Choices": [
+                {
+                    "Text": "Maybe you'll have better luck elsewhere.",
+                    "Target": "Written Records"
+                }
+            ]
+        },
+        "The End": {
+            "Body": "The light from outside burns your eyes, yet the calm whistling of trees calms your nerves as your eyes slowly adjust to the sights around you. THE END."
         }
     }
 }

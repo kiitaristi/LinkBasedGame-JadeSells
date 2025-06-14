@@ -1,31 +1,49 @@
 class Start extends Scene {
     create() {
-        this.engine.setTitle("Title goes here"); // TODO: replace this text using this.engine.storyData to find the story title
-        this.engine.addChoice("Begin the story");
+        this.engine.setTitle(this.engine.storyData.Title); // TODO: replace this text using this.engine.storyData to find the story title
+        this.engine.addChoice("Start.");
+        this.engine.puzzleSolved = false;
+        this.engine.penHave = false;
     }
 
     handleChoice() {
-        this.engine.gotoScene(Location, "Home"); // TODO: replace this text by the initial location of the story
+        this.engine.gotoScene(Location, this.engine.storyData.InitialLocation); // TODO: replace this text by the initial location of the story
     }
 }
 
 class Location extends Scene {
     create(key) {
-        let locationData = undefined; // TODO: use `key` to get the data object for the current story location
-        this.engine.show("Body text goes here"); // TODO: replace this text by the Body of the location data
+        console.log("puzzle solved? " + this.engine.puzzleSolved);
+        let locationData = this.engine.storyData.Locations[key]; // TODO: use `key` to get the data object for the current story location
+        this.engine.show(locationData.Body); // TODO: replace this text by the Body of the location data
+        if (this.engine.penHave) { this.engine.show("(You can feel the pen bleeding ink into your pocket)"); }
         
-        if(true) { // TODO: check if the location has any Choices
-            for(let choice of ["example data"]) { // TODO: loop over the location's Choices
-                this.engine.addChoice("action text"); // TODO: use the Text of the choice
+        if(locationData.Choices) { // TODO: check if the location has any Choices
+            if (locationData.Body == "A room with electrical connections now made.") { this.engine.puzzleSolved = true; }
+            if (locationData.Body == "The cabinets in front of you are uncharacteristically orderly when compared to the others. You attempt to open them, but they refuse to budge, the locks somehow not buckling under their rust. However, you do find and pocket a pen.") { 
+                this.engine.penHave = true; }
+            
+            for(let choice of locationData.Choices) { // TODO: loop over the location's Choices
+                console.log(choice.Target);
+                if (this.engine.puzzleSolved) {
+                    console.log("is choice one of the two? " + (choice.Target == "Puzzle Room (Unsolved)" || choice.Target != "Exit (Closed)"));
+
+                    if (!(choice.Target == "Puzzle Room (Unsolved)") && !(choice.Target == "Exit (Closed)")) {
+                        this.engine.addChoice(choice.Text, choice); // TODO: use the Text of the choice
+                    }
                 // TODO: add a useful second argument to addChoice so that the current code of handleChoice below works
+                } else {
+                    if (choice.Text != "Approach the heavy door now humming.") { this.engine.addChoice(choice.Text, choice); }
+                }
             }
-        } else {
-            this.engine.addChoice("The end.")
-        }
+            } else {
+                this.engine.addChoice("The end.")
+            }
     }
 
     handleChoice(choice) {
-        if(choice) {
+        if (choice) {
+            if (choice == "")
             this.engine.show("&gt; "+choice.Text);
             this.engine.gotoScene(Location, choice.Target);
         } else {
@@ -33,6 +51,7 @@ class Location extends Scene {
         }
     }
 }
+
 
 class End extends Scene {
     create() {
