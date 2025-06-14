@@ -18,12 +18,12 @@ class Location extends Scene {
         if (this.engine.penHave) { this.engine.storyData.PenBody; }
         
         if(locationData.Choices) { // TODO: check if the location has any Choices
-            if (locationData.Body == "A room with electrical connections now made.") { this.engine.puzzleSolved = true; }
+            if (locationData.Body == "A room with electrical connections now made.") { this.engine.puzzleSolve = true; }
             if (locationData.Body == "The cabinets in front of you are uncharacteristically orderly when compared to the others. You attempt to open them, but they refuse to budge, the locks somehow not buckling under their rust. However, you do find and pocket a pen.") { 
                 this.engine.penHave = true; }
             
             for(let choice of locationData.Choices) { // TODO: loop over the location's Choices
-                if (this.engine.puzzleSolved) {
+                if (this.engine.puzzleSolve) {
                     if (!(choice.Target == "Puzzle Room (Unsolved)") && !(choice.Target == "Exit (Closed)")) {
                         this.engine.addChoice(choice.Text, choice); // TODO: use the Text of the choice
                     }

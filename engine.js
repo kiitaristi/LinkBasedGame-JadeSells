@@ -22,7 +22,7 @@ class Engine {
             }
         );
 
-        this.puzzleSolved = false;
+        this.puzzleSolve = false;
         this.penHave = false;
     }
 
