@@ -13,10 +13,9 @@ class Start extends Scene {
 
 class Location extends Scene {
     create(key) {
-        console.log("puzzle solved? " + this.engine.puzzleSolved);
         let locationData = this.engine.storyData.Locations[key]; // TODO: use `key` to get the data object for the current story location
         this.engine.show(locationData.Body); // TODO: replace this text by the Body of the location data
-        if (this.engine.penHave) { this.engine.show("(You can feel the pen bleeding ink into your pocket)"); }
+        if (this.engine.penHave) { this.engine.storyData.PenBody; }
         
         if(locationData.Choices) { // TODO: check if the location has any Choices
             if (locationData.Body == "A room with electrical connections now made.") { this.engine.puzzleSolved = true; }
@@ -24,10 +23,7 @@ class Location extends Scene {
                 this.engine.penHave = true; }
             
             for(let choice of locationData.Choices) { // TODO: loop over the location's Choices
-                console.log(choice.Target);
                 if (this.engine.puzzleSolved) {
-                    console.log("is choice one of the two? " + (choice.Target == "Puzzle Room (Unsolved)" || choice.Target != "Exit (Closed)"));
-
                     if (!(choice.Target == "Puzzle Room (Unsolved)") && !(choice.Target == "Exit (Closed)")) {
                         this.engine.addChoice(choice.Text, choice); // TODO: use the Text of the choice
                     }
